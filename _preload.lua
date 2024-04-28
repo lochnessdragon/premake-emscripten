@@ -98,6 +98,7 @@
 	filter { "configurations:Emscripten" }
 		system "emscripten"
 		toolset "emcc"
+		architecture "x86"
 
 	filter {}
 
