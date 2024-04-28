@@ -17,6 +17,11 @@
 	p.EMSCRIPTEN = "emscripten"
 	p.EMCC = "emcc"
 
+	local osoption = p.option.get("os")
+	if osoption ~= nil then
+		table.insert(osoption.allowed, { "emscripten",  "Emscripten" })
+	end
+
 	api.addAllowed("system", { p.EMSCRIPTEN })
 	api.addAllowed("kind", "HTMLPage")
 	api.addAllowed("flags", {
