@@ -100,6 +100,9 @@
 		toolset "emcc"
 		architecture "x86"
 
+	filter { "system:emscripten", "kind:ConsoleApp or SharedLib" }
+		targetextension ".wasm"
+
 	filter {}
 
 --
