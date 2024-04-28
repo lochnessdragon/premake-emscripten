@@ -95,7 +95,7 @@
 
 
 
-	filter { "configurations:Emscripten" }
+	filter { "system:emscripten" }
 		system "emscripten"
 		toolset "emcc"
 		architecture "x86"
