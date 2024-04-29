@@ -4,6 +4,7 @@
 -- Copyright (c) 2012-2015 Manu Evans and the Premake project
 --
 
+	local p = premake
 	local emscripten = premake.modules.emscripten
 
 	emscripten.emcc = {}
@@ -14,6 +15,14 @@
 	local clang = premake.tools.clang
 	local config = premake.config
 
+
+-- Patch Clang toolset architecture specific options.
+
+clang.shared.architecture[p.WASM32] = clang.shared.architecture[p.X86]
+clang.shared.architecture[p.WASM64] = clang.shared.architecture[p.X86_64]
+
+clang.ldflags[p.WASM32] = clang.ldflags[p.X86]
+clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 
 --
 -- Build a list of flags for the C preprocessor corresponding to the
