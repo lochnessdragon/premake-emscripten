@@ -19,18 +19,7 @@
 
 
 	include("emscripten_emcc.lua")
-
-
-	if premake.modules.vstool ~= nil then
-		premake.override(premake.modules.vstool, "isclang", function(oldfn, cfg)
-			return cfg.toolset == "emcc" or oldfn(cfg)
-		end)
-
-		premake.override(premake.modules.vstool, "isvstool", function(oldfn, cfg)
-			return not (cfg.system == "emscripten" or cfg.toolset == "emcc") and oldfn(cfg)
-		end)
-	end
-
+	include("emscripten_gmake.lua")
 	include("emscripten_vstudio.lua")
 
 	return m
