@@ -1,11 +1,12 @@
 # Premake Extension to support Emscripten
 
-This is a fork of https://github.com/TurkeyMan/premake-emscripten with a bunch of fixes:
+This is a fork of https://github.com/TurkeyMan/premake-emscripten with a bunch of changes:
 
+* `wasm32` and `wasm64` architectures 
 * `.wasm` target extension
 * `gmake` and `gmake2` actions
-* `emscripten` system (and `os==emscripten` support)
-* `wasm32` and `wasm64` architectures 
+* `emscripten` system
+* extension preload for `--os=emscripten` command line option support
 * fix `emcc` toolset validation in gmake actions
 
 And the original:
