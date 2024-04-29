@@ -16,11 +16,16 @@
 
 	p.EMSCRIPTEN = "emscripten"
 	p.EMCC = "emcc"
+	p.WASM32 = "wasm32"
+	p.WASM64 = "wasm64"
 
 	local osoption = p.option.get("os")
 	if osoption ~= nil then
 		table.insert(osoption.allowed, { "emscripten",  "Emscripten" })
 	end
+
+	api.addAllowed("architecture", { p.WASM32 })
+	api.addAllowed("architecture", { p.WASM64 })
 
 	api.addAllowed("system", { p.EMSCRIPTEN })
 	api.addAllowed("kind", "HTMLPage")
@@ -98,7 +103,7 @@
 	filter { "system:emscripten" }
 		system "emscripten"
 		toolset "emcc"
-		architecture "x86"
+		architecture "wasm32"
 
 	filter { "system:emscripten", "kind:ConsoleApp or SharedLib" }
 		targetextension ".wasm"
