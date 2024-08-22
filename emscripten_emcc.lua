@@ -36,8 +36,10 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 
 	function emcc.getcppflags(cfg)
 
-		-- Just pass through to Clang for now
+		-- emcc works similarly to clang
 		local flags = clang.getcppflags(cfg)
+		-- force colors on the terminal
+		table.insert(flags, "-fcolor-diagnostic")
 		return flags
 
 	end
@@ -56,8 +58,10 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 
 	function emcc.getcflags(cfg)
 
-		-- Just pass through to Clang for now
+		-- emcc works similarly to clang
 		local flags = clang.getcflags(cfg)
+		-- force colors on the terminal
+		table.insert(flags, "-fcolor-diagnostic")
 		return flags
 
 	end
@@ -76,8 +80,10 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 
 	function emcc.getcxxflags(cfg)
 
-		-- Just pass through to Clang for now
+		-- emcc works similarly to clang
 		local flags = clang.getcxxflags(cfg)
+		-- force colors on the terminal
+		table.insert(flags, "-fcolor-diagnostic")
 		return flags
 
 	end
@@ -143,10 +149,10 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 --    An array of symbols with the appropriate flag decorations.
 --
 
-	function emcc.getincludedirs(cfg, dirs)
+	function emcc.getincludedirs(cfg, dirs, extdirs, frameworkdirs, includedirsafter)
 
 		-- Just pass through to Clang for now
-		local flags = clang.getincludedirs(cfg, dirs)
+		local flags = clang.getincludedirs(cfg, dirs, extdirs, frameworkdirs, includedirsafter)
 		return flags
 
 	end
@@ -279,7 +285,6 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 --    The executable command name for a tool, or nil if the system's
 --    default value should be used.
 --
-
 	emcc.tools = {
 		cc = "emcc",
 		cxx = "em++",
@@ -291,6 +296,9 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 			if cfg.emccpath ~= nil then
 				return path.join(cfg.emccpath, emcc.tools[tool])
 			end
+		elseif _ACTION == "ninja" and os.host() == "windows" then
+			-- ninja on windows requires cmd.exe /c to find the script file
+			return "cmd.exe /c " .. emcc.tools[tool]
 		end
 		return emcc.tools[tool]
 	end
