@@ -38,8 +38,6 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 
 		-- emcc works similarly to clang
 		local flags = clang.getcppflags(cfg)
-		-- force colors on the terminal
-		table.insert(flags, "-fcolor-diagnostic")
 		return flags
 
 	end
@@ -60,8 +58,6 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 
 		-- emcc works similarly to clang
 		local flags = clang.getcflags(cfg)
-		-- force colors on the terminal
-		table.insert(flags, "-fcolor-diagnostic")
 		return flags
 
 	end
@@ -82,8 +78,6 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 
 		-- emcc works similarly to clang
 		local flags = clang.getcxxflags(cfg)
-		-- force colors on the terminal
-		table.insert(flags, "-fcolor-diagnostic")
 		return flags
 
 	end
@@ -148,7 +142,7 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 -- @return
 --    An array of symbols with the appropriate flag decorations.
 --
-
+	-- getincludedirsrelativeto(cfg, prj/wks, dirs, extdirs, frameworkdirs, includedirsafter)
 	function emcc.getincludedirs(cfg, dirs, extdirs, frameworkdirs, includedirsafter)
 
 		-- Just pass through to Clang for now
