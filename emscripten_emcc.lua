@@ -296,10 +296,3 @@ clang.ldflags[p.WASM64] = clang.ldflags[p.X86_64]
 		end
 		return emcc.tools[tool]
 	end
-
--- emscripten's flags work like gcc/clang
--- this is used for premake-ninja support
---
-	function emcc.clang_like() 
-		return true
-	end

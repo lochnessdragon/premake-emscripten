@@ -21,5 +21,6 @@
 	include("emscripten_emcc.lua")
 	include("emscripten_gmake.lua")
 	include("emscripten_vstudio.lua")
+	include("emscripten_ninja.lua")
 
 	return m
