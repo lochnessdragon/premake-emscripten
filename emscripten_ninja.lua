@@ -2,7 +2,6 @@ local p = premake
 if os.locate("ninja.lua") then
 
     require("ninja")
-    print("Patching ninja!")
 
     --
     -- Patch the ninja action with the allowed tools...
